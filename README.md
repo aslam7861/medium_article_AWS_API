@@ -17,8 +17,10 @@ We use Web scraping to collect the structured web data in an automation fashion.
 
 To use the webscrapping we use API keys which you have to find on your own
 
+```python
 OWM\_key = "your\_key"  
 flight\_api\_key = "your\_api\_key"
+```
 
 We collect informations of all cities of Germany in a dataframe df\_cities which have a large airports using BeautifulSoup function.
 
@@ -96,7 +98,7 @@ df_cities.head(5)
   
 
 We collect weather information using web scrapping with OWM API key:
-
+```python
 \# look for the fields that could be relevant:   
 \# better field descriptions [https://www.weatherbit.io/api/weather-forecast-5-day](https://www.weatherbit.io/api/weather-forecast-5-day)  
 all\_weather=\[\]  
@@ -132,8 +134,9 @@ for i in range(len(city\_lists)):
     all\_weather.append(weather\_info)  
           
 all\_weather\_data = pd.concat(\[pd.DataFrame(a) for a in all\_weather\])
+```
 
-#### Airports detail of Germany using API keys of Aerodatabox:
+## Airports detail of Germany using API keys of Aerodatabox:
 
 ![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__7roZbOu4NEe8Jzee8RQZFw.jpeg)
 
