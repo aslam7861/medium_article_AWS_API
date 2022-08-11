@@ -1,14 +1,5 @@
 
----
-title: Automation on Airports using API and AWS
-description: >-
-  In this twenty-first century, technology has taken a major place in the real
-  world. There are many things that can be done by sitting from…
-date: ''
-categories: []
-keywords: []
-slug: ''
----
+# Automation on Airports using API and AWS
 
 In this twenty-first century, technology has taken a major place in the real world. There are many things that can be done by sitting from a lovable place. We all can see in our daily life how dependent we are nowadays with technology . Today, I am discussing here to find all the informations of major airports of Germany . Many taxis, scooters and bicycle renting companies can get benefited with the informations which I explain in this medium article.
 
