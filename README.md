@@ -209,19 +209,20 @@ CREATE DATABASE project;
 ```
 After creating the database the following code connects our python code to SQL:
 ```python
-**import** pandas **as** pd   
-schema**\=** "project"  
-host**\=**"abcd"  
-user**\=**"abcd"  
-password**\=**"password"  
-port**\=**3306  
-con **\=** f'mysql+pymysql://{user}:{password}@{host}:{port}/{schema}'
+import pandas as pd
+
+schema= "project"
+host="abcd"
+user="abcd"
+password="password"
+port=3306
+con = f'mysql+pymysql://{user}:{password}@{host}:{port}/{schema}'
 ```
 Once the connection is created between python and SQL Schema, we just need to hit the following code:
 ```python
-all\_weather\_data.to\_sql('weather', if\_exists='append', con=con, index=False)  
-arrivals\_cities.to\_sql('arrivals', if\_exists='append', con=con, index=False)  
-df\_cities.to\_sql('cities', if\_exists='append', con=con, index=False)
+all_weather_data.to_sql('weather', if_exists='append', con=con, index=False)
+arrivals_cities.to_sql('arrivals', if_exists='append', con=con, index=False)
+df_cities.to_sql('cities', if_exists='append', con=con, index=False)
 ```
 in Python which sends all the information in our Schema. If you need more informations to be included then you extract informations using API keys and push it in your schema.
 
