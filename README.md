@@ -13,7 +13,7 @@ Once the company knows the weather conditions and the number of flights landing 
 
 We use Web scraping to collect the structured web data in an automation fashion. Web scrapping involves downloading a page and extracting the informations from it. This is the one of the important tool to bring the informations from wikipedia. The content of a page may be parsed and reformatted, and its data copied into a spreadsheet or loaded into a database. Web scrapers typically take something out of a page, to make use of it for another purpose somewhere else. For example we collect the informations of all the flights status of diffferent airports of Germany using web scrapping(using Beautifulsoup) and bring out the necessary information which we require.
 
-                               ![my_image](img/1__1__UYXjS0q0dc3126FDN6Lg.png)
+   ![my_image](img/1__1__UYXjS0q0dc3126FDN6Lg.png)
 
 To use the webscrapping we use API keys which you have to find on your own
 
@@ -22,72 +22,73 @@ flight\_api\_key = "your\_api\_key"
 
 We collect informations of all cities of Germany in a dataframe df\_cities which have a large airports using BeautifulSoup function.
 
-**import** requests  
-**from** bs4 **import** BeautifulSoup **as** bs  
-**import** pandas **as** pd  
-**import** unicodedata  
-city\_lists=\[‘Berlin’, ‘Dresden’, ‘Frankfurt am Main’, ‘Münster’, ‘Hamburg’ ‘Cologne’, ‘Düsseldorf’, ‘Munich’, ‘Nuremberg’, ‘Leipzig’, ‘Stuttgart’, ‘Hannover’,‘Bremen’, ‘Dortmund’, ‘Karlsruhe’\]
 
-countries=\["DE" for i in rannge(den(city\_lists))\]
+```
+import requests
+from bs4 import BeautifulSoup as bs
+import pandas as pd
+import unicodedata
+city_lists=['Berlin', 'Dresden', 'Frankfurt am Main', 'Münster', 'Hamburg' 'Cologne', 'Düsseldorf', 'Munich', 'Nuremberg', 'Leipzig', 'Stuttgart', 'Hannover','Bremen', 'Dortmund', 'Karlsruhe']
+countries=["DE" for i in rannge(den(city_lists))]
+airports_icao=['EDDB','EDDC', 'EDDF', 'EDDG', 'EDDH', 'EDDK','EDDL', 'EDDM', 'EDDN', 'EDDP', 'EDDS', 'EDDV', 'EDDW', 'EDLW', 'EDSB']
+cities=city_lists
+def City_info(soup):
+    
+    ret_dict = {}
+    ret_dict['city'] = soup.h1.get_text()
+    
+    
+    if soup.select_one('.mergedrow:-soup-contains("Mayor")>.infobox-label') != None:
+        i = soup.select_one('.mergedrow:-soup-contains("Mayor")>.infobox-label')
+        mayor_name_html = i.find_next_sibling()
+        mayor_name = unicodedata.normalize('NFKD',mayor_name_html.get_text())
+        ret_dict['mayor']  = mayor_name
+    
+    if soup.select_one('.mergedrow:-soup-contains("City")>.infobox-label') != None:
+        j =  soup.select_one('.mergedrow:-soup-contains("City")>.infobox-label')
+        area = j.find_next_sibling('td').get_text()
+        ret_dict['city_size'] = unicodedata.normalize('NFKD',area)
 
-airports\_icao=\['EDDB','EDDC', 'EDDF', 'EDDG', 'EDDH', 'EDDK','EDDL', 'EDDM', 'EDDN', 'EDDP', 'EDDS', 'EDDV', 'EDDW', 'EDLW', 'EDSB'\]
+    if soup.select_one('.mergedtoprow:-soup-contains("Elevation")>.infobox-data') != None:
+        k = soup.select_one('.mergedtoprow:-soup-contains("Elevation")>.infobox-data')
+        elevation_html = k.get_text()
+        ret_dict['elevation'] = unicodedata.normalize('NFKD',elevation_html)
+    
+    if soup.select_one('.mergedtoprow:-soup-contains("Population")') != None:
+        l = soup.select_one('.mergedtoprow:-soup-contains("Population")')
+        c_pop = l.findNext('td').get_text()
+        ret_dict['city_population'] = c_pop
+    
+    if soup.select_one('.infobox-label>[title^=Urban]') != None:
+        m = soup.select_one('.infobox-label>[title^=Urban]')
+        u_pop = m.findNext('td')
+        ret_dict['urban_population'] = u_pop.get_text()
 
-cities**\=**city\_lists  
-**def** City\_info(soup):  
-      
-    ret\_dict **\=** {}  
-    ret\_dict\['city'\] **\=** soup**.**h1**.**get\_text()  
-      
-      
-    **if** soup**.**select\_one('.mergedrow:-soup-contains("Mayor")>.infobox-label') **!=** **None**:  
-        i **\=** soup**.**select\_one('.mergedrow:-soup-contains("Mayor")>.infobox-label')  
-        mayor\_name\_html **\=** i**.**find\_next\_sibling()  
-        mayor\_name **\=** unicodedata**.**normalize('NFKD',mayor\_name\_html**.**get\_text())  
-        ret\_dict\['mayor'\]  **\=** mayor\_name  
-      
-    **if** soup**.**select\_one('.mergedrow:-soup-contains("City")>.infobox-label') **!=** **None**:  
-        j **\=**  soup**.**select\_one('.mergedrow:-soup-contains("City")>.infobox-label')  
-        area **\=** j**.**find\_next\_sibling('td')**.**get\_text()  
-        ret\_dict\['city\_size'\] **\=** unicodedata**.**normalize('NFKD',area)  
-  
-    **if** soup**.**select\_one('.mergedtoprow:-soup-contains("Elevation")>.infobox-data') **!=** **None**:  
-        k **\=** soup**.**select\_one('.mergedtoprow:-soup-contains("Elevation")>.infobox-data')  
-        elevation\_html **\=** k**.**get\_text()  
-        ret\_dict\['elevation'\] **\=** unicodedata**.**normalize('NFKD',elevation\_html)  
-      
-    **if** soup**.**select\_one('.mergedtoprow:-soup-contains("Population")') **!=** **None**:  
-        l **\=** soup**.**select\_one('.mergedtoprow:-soup-contains("Population")')  
-        c\_pop **\=** l**.**findNext('td')**.**get\_text()  
-        ret\_dict\['city\_population'\] **\=** c\_pop  
-      
-    **if** soup**.**select\_one('.infobox-label>\[title^=Urban\]') **!=** **None**:  
-        m **\=** soup**.**select\_one('.infobox-label>\[title^=Urban\]')  
-        u\_pop **\=** m**.**findNext('td')  
-        ret\_dict\['urban\_population'\] **\=** u\_pop**.**get\_text()  
-  
-    **if** soup**.**select\_one('.infobox-label>\[title^=Metro\]') **!=** **None**:  
-        n **\=** soup**.**select\_one('.infobox-label>\[title^=Metro\]')  
-        m\_pop **\=** n**.**findNext('td')  
-        ret\_dict\['metro\_population'\] **\=** m\_pop**.**get\_text()  
-      
-    **if** soup**.**select\_one('.latitude') **!=** **None**:  
-        o **\=** soup**.**select\_one('.latitude')  
-        ret\_dict\['lat'\] **\=** o**.**get\_text()  
-  
-    **if** soup**.**select\_one('.longitude') **!=** **None**:      
-        p **\=** soup**.**select\_one('.longitude')  
-        ret\_dict\['long'\] **\=** p**.**get\_text()  
-      
-    **return** ret\_dict  
-  
-list\_of\_city\_info **\=** \[\]  
-**for** city **in** cities:  
-    url **\=** 'https://en.wikipedia.org/wiki/{}'**.**format(city)  
-    web **\=** requests**.**get(url,'html.parser')  
-    soup **\=** bs(web**.**content)  
-    list\_of\_city\_info**.**append(City\_info(soup))  
-df\_cities **\=** pd**.**DataFrame(list\_of\_city\_info)  
-df\_cities.head(5)
+    if soup.select_one('.infobox-label>[title^=Metro]') != None:
+        n = soup.select_one('.infobox-label>[title^=Metro]')
+        m_pop = n.findNext('td')
+        ret_dict['metro_population'] = m_pop.get_text()
+    
+    if soup.select_one('.latitude') != None:
+        o = soup.select_one('.latitude')
+        ret_dict['lat'] = o.get_text()
+
+    if soup.select_one('.longitude') != None:    
+        p = soup.select_one('.longitude')
+        ret_dict['long'] = p.get_text()
+    
+    return ret_dict
+
+list_of_city_info = []
+for city in cities:
+    url = 'https://en.wikipedia.org/wiki/{}'.format(city)
+    web = requests.get(url,'html.parser')
+    soup = bs(web.content)
+    list_of_city_info.append(City_info(soup))
+df_cities = pd.DataFrame(list_of_city_info)
+df_cities.head(5)```
+
+
 
 ![](img/1__SqO3gEVpM09vZ6__3QgWCJA.png)
 
