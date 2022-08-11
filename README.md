@@ -22,7 +22,7 @@ Once the company knows the weather conditions and the number of flights landing 
 
 We use Web scraping to collect the structured web data in an automation fashion. Web scrapping involves downloading a page and extracting the informations from it. This is the one of the important tool to bring the informations from wikipedia. The content of a page may be parsed and reformatted, and its data copied into a spreadsheet or loaded into a database. Web scrapers typically take something out of a page, to make use of it for another purpose somewhere else. For example we collect the informations of all the flights status of diffferent airports of Germany using web scrapping(using Beautifulsoup) and bring out the necessary information which we require.
 
-![my_image](img\1__1__UYXjS0q0dc3126FDN6Lg.png)
+![my_image](img/1__1__UYXjS0q0dc3126FDN6Lg.png)
 
 To use the webscrapping we use API keys which you have to find on your own
 
@@ -98,7 +98,7 @@ list\_of\_city\_info **\=** \[\]
 df\_cities **\=** pd**.**DataFrame(list\_of\_city\_info)  
 df\_cities.head(5)
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__SqO3gEVpM09vZ6__3QgWCJA.png)
+![](img/1__SqO3gEVpM09vZ6__3QgWCJA.png)
 
   
 
@@ -239,7 +239,7 @@ I have sent all the informations in my schema known as ‘project’ and produce
 
 The data base ‘project’ consists of information in the time between 15:20–00:20 of August 09, 2022(**For you change the time accordingly**) from which I constructed a table which explains number of flights landing with other details:
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__QWJ5OgTdnoc5lQq5VcaD7A.png)
+![](img/1__QWJ5OgTdnoc5lQq5VcaD7A.png)
 
 From above table we construct a graph which consists of all flight landing at aforementioned time.
 
@@ -261,7 +261,7 @@ The beauty of this article is to update all the python code into AWS Lambda func
 
 Once you have created an account in AWS you have to set a Lambda function. The Lambda function you have created does not cosists some of the python libraries, so you have to add these libraries on Add layer which you can find below on Lmbda function.
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__omNGOsi__lfWBxzgLFF9pZA.png)
+![](img/1__omNGOsi__lfWBxzgLFF9pZA.png)
 
 #### 2\. Generate the python code:
 
