@@ -23,7 +23,7 @@ flight\_api\_key = "your\_api\_key"
 We collect informations of all cities of Germany in a dataframe df\_cities which have a large airports using BeautifulSoup function.
 
 
-```
+``` python
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
@@ -86,7 +86,8 @@ for city in cities:
     soup = bs(web.content)
     list_of_city_info.append(City_info(soup))
 df_cities = pd.DataFrame(list_of_city_info)
-df_cities.head(5)```
+df_cities.head(5)
+```
 
 
 
