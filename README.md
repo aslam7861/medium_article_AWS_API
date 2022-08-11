@@ -14,7 +14,7 @@ In this twenty-first century, technology has taken a major place in the real wor
 
 The big advantage of modern technology to a company is optimising eveything and increasing the profit. For example, if the scooters company distributed many rented scooters to a big airports where there was maximum chance of raining then the company would have to bear the costs while distributing the scooters to different places.
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__gNblB__OOm3dEYEiXe9xVrw.png)
+![](img\1__gNblB__OOm3dEYEiXe9xVrw.png)
 
 Once the company knows the weather conditions and the number of flights landing in each big cities then they can analyse the right quantity of scooters/taxis to be distributed in each places for renters.
 
