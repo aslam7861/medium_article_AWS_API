@@ -141,7 +141,7 @@ all\_weather\_data = pd.concat(\[pd.DataFrame(a) for a in all\_weather\])
 ![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__7roZbOu4NEe8Jzee8RQZFw.jpeg)
 
 In the following code we are extracting data using API of Aerodatabox of cities with time interval of 9 hours from actual time:
-
+```python
 import requests  
 from IPython.display import JSON  
 responses=\[\]  
@@ -157,9 +157,10 @@ for i in range(len(airports\_icao)):
         'x-rapidapi-key': flight\_api\_key  
         }  
     responses.append(requests.request("GET", url, headers=headers, params=querystring))
-
+```
 We collected all the information in **responses.** We apply **.json()** for each item of responses and collect the informations of flights which are landing in different cities and form a data frame **arrival\_cities** as computed below**:**
 
+```python
 import requests  
 from IPython.display import JSON  
 responses=\[\]  
@@ -197,37 +198,36 @@ for i in range(len(city\_lists)):
 
 print(\[a.shape for a in pds\])  
 arrivals\_cities=pd.concat(pds)
-
-#### SQL Alchemy:
+```
+## SQL Alchemy:
 
 ![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__j7KCFGTuxk3Y__T6vcpsh6w.png)
 
 SQLAlchemy is the **Python SQL toolkit** and Object Relational Mapper that gives application developers the full power and flexibility of SQL. Python has different libraries to bring necessary informations using APIs. One can clean the data using pandas in python. To produce a database in SQL we create first a Schema in MySQL using the following one line code:
-
+```python
 CREATE DATABASE project;
-
+```
 After creating the database the following code connects our python code to SQL:
-
-**import** pandas **as** pd  
-  
+```python
+**import** pandas **as** pd   
 schema**\=** "project"  
 host**\=**"abcd"  
 user**\=**"abcd"  
 password**\=**"password"  
 port**\=**3306  
 con **\=** f'mysql+pymysql://{user}:{password}@{host}:{port}/{schema}'
-
+```
 Once the connection is created between python and SQL Schema, we just need to hit the following code:
-
+```python
 all\_weather\_data.to\_sql('weather', if\_exists='append', con=con, index=False)  
 arrivals\_cities.to\_sql('arrivals', if\_exists='append', con=con, index=False)  
 df\_cities.to\_sql('cities', if\_exists='append', con=con, index=False)
-
+```
 in Python which sends all the information in our Schema. If you need more informations to be included then you extract informations using API keys and push it in your schema.
 
 I have sent all the informations in my schema known as ‘project’ and produced the following ERR diagram:
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__zPpcG1IZ47uB76YKb28UZw.png)
+![](img/1__zPpcG1IZ47uB76YKb28UZw.png)
 
   
 
@@ -239,11 +239,11 @@ The data base ‘project’ consists of information in the time between 15:20–
 
 From above table we construct a graph which consists of all flight landing at aforementioned time.
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__8mwVuckElWO8xkoz0XLBSQ.png)
+![](img/1__8mwVuckElWO8xkoz0XLBSQ.png)
 
-### AWS(Amazon Web Service):
+## AWS(Amazon Web Service):
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__z3AdCo4IojGNezkdxhhNww.png)
+![](img/1__z3AdCo4IojGNezkdxhhNww.png)
 
 ####   
 
@@ -263,7 +263,7 @@ Once you have created an account in AWS you have to set a Lambda function. The L
 
 Once you have added the pyhton libraries you just need to set your code to lambda\_function.py as shown nelow:
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__bKRGyGwCGL4kvmd2XK9L8A.png)
+![](img/1__bKRGyGwCGL4kvmd2XK9L8A.png)
 
 Apply **Deploy** button to save your code and then pess **Test** button to produce the result which you require. One can set here the time accordingly to get the results when ever required.
 
@@ -271,7 +271,7 @@ Apply **Deploy** button to save your code and then pess **Test** button to produ
 
 In the Lambda function, we create an event trigger
 
-![](C:\Users\HANA\Desktop\WBS\aslam\posts\md_1660208687829\img\1__xZ5907j6N8V39by2TSSWXg.png)
+![](img/1__xZ5907j6N8V39by2TSSWXg.png)
 
 using **CloudWatch Events** to produce the results regulary to set the plan for car/scooter companies to optimize the costs regularly. For example, I modify my code to collect all informations in the time between 0:00 to 23:59 every next day. 
 
