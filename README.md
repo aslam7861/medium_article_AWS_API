@@ -13,7 +13,7 @@ Once the company knows the weather conditions and the number of flights landing 
 
 We use Web scraping to collect the structured web data in an automation fashion. Web scrapping involves downloading a page and extracting the informations from it. This is the one of the important tool to bring the informations from wikipedia. The content of a page may be parsed and reformatted, and its data copied into a spreadsheet or loaded into a database. Web scrapers typically take something out of a page, to make use of it for another purpose somewhere else. For example we collect the informations of all the flights status of diffferent airports of Germany using web scrapping(using Beautifulsoup) and bring out the necessary information which we require.
 
-align="center" ![my_image](img/1__1__UYXjS0q0dc3126FDN6Lg.png)
+                               ![my_image](img/1__1__UYXjS0q0dc3126FDN6Lg.png)
 
 To use the webscrapping we use API keys which you have to find on your own
 
